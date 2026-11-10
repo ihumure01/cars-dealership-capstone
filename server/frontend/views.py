@@ -1,17 +1,19 @@
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
-from .models import Dealer, CarMake
+from .models import Dealer, CarMake, Review
 from .sentiment_analyzer import sentiment_analyzer
 import json
 
 
 def home(request):
-    return JsonResponse({
-        "message": "Welcome to Best Cars Dealership",
-        "status": "Application is running"
-    })
+    state = request.GET.get("state", "")
+    dealers = Dealer.objects.all()
+    if state:
+        dealers = dealers.filter(state__iexact=state)
+    states = Dealer.objects.exclude(state="").values_list("state", flat=True).distinct()
+    return render(request, "frontend/home.html", {"dealers": dealers, "states": states, "selected_state": state})
 
 
 @csrf_exempt
@@ -34,6 +36,31 @@ def login_user(request):
             })
 
         return JsonResponse({"error": "Invalid username or password"}, status=401)
+
+    except (json.JSONDecodeError, TypeError):
+        return JsonResponse({"error": "Invalid JSON data"}, status=400)
+
+
+@csrf_exempt
+def djangoapp_login(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST method required"}, status=405)
+
+    try:
+        data = json.loads(request.body)
+        username = data.get("userName")
+        password = data.get("password")
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return JsonResponse({
+                "userName": user.username,
+                "status": "Authenticated"
+            })
+
+        return JsonResponse({"status": "Not Authenticated"}, status=401)
 
     except (json.JSONDecodeError, TypeError):
         return JsonResponse({"error": "Invalid JSON data"}, status=400)
@@ -149,3 +176,23 @@ def analyze_review(request):
         return JsonResponse(result)
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+
+def post_review(request):
+    dealers = Dealer.objects.all()
+    error = ""
+    if request.method == "POST":
+        dealer_id = request.POST.get("dealer")
+        reviewer_name = request.POST.get("reviewer_name", "").strip()
+        comment = request.POST.get("comment", "").strip()
+        try:
+            rating = int(request.POST.get("rating", "0"))
+        except ValueError:
+            rating = 0
+        if not reviewer_name or not comment or not dealer_id or rating not in range(1, 6):
+            error = "Please complete all fields and select a rating from 1 to 5."
+        else:
+            dealer = get_object_or_404(Dealer, id=dealer_id)
+            Review.objects.create(dealer=dealer, reviewer_name=reviewer_name, comment=comment, rating=rating)
+            return render(request, "frontend/post_review.html", {"dealers": dealers, "success": True})
+    return render(request, "frontend/post_review.html", {"dealers": dealers, "error": error})
