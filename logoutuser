@@ -1,11 +1,10 @@
 TASK 6: LOGOUT USER
 
 cURL command:
-curl -i -b cookies.txt -c cookies.txt -X POST http://127.0.0.1:8000/logout/
+curl -i -X GET http://127.0.0.1:8000/djangoapp/logout
 
 Successful output:
 HTTP/1.1 200 OK
+Content-Type: application/json
 
-Set-Cookie: sessionid=""; Max-Age=0
-
-{"message": "Logout successful"}
+{"userName": ""}

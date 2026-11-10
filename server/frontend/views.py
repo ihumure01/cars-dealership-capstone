@@ -196,3 +196,12 @@ def post_review(request):
             Review.objects.create(dealer=dealer, reviewer_name=reviewer_name, comment=comment, rating=rating)
             return render(request, "frontend/post_review.html", {"dealers": dealers, "success": True})
     return render(request, "frontend/post_review.html", {"dealers": dealers, "error": error})
+
+
+@csrf_exempt
+def djangoapp_logout(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "GET method required"}, status=405)
+
+    logout(request)
+    return JsonResponse({"userName": ""})
