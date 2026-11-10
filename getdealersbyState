@@ -1,0 +1,18 @@
+TASK 11: GET DEALERS BY STATE
+
+cURL command:
+curl -i http://127.0.0.1:8000/api/dealers/state/kansas/
+
+Successful output:
+HTTP/1.1 200 OK
+Date: Tue, 10 Nov 2026 18:19:34 GMT
+Server: WSGIServer/0.2 CPython/3.14.2
+Content-Type: application/json
+X-Frame-Options: DENY
+Vary: origin
+Content-Length: 73
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+
+{"dealers": [{"id": 3, "name": "Kansas City Motors", "state": "Kansas"}]}
