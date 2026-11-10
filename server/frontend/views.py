@@ -1,13 +1,17 @@
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
+from .models import Dealer
 import json
+
 
 def home(request):
     return JsonResponse({
         "message": "Welcome to Best Cars Dealership",
         "status": "Application is running"
     })
+
 
 @csrf_exempt
 def login_user(request):
@@ -33,6 +37,7 @@ def login_user(request):
     except (json.JSONDecodeError, TypeError):
         return JsonResponse({"error": "Invalid JSON data"}, status=400)
 
+
 @csrf_exempt
 def logout_user(request):
     if request.method != "POST":
@@ -40,3 +45,28 @@ def logout_user(request):
 
     logout(request)
     return JsonResponse({"message": "Logout successful"})
+
+
+def get_dealer_reviews(request, dealer_id):
+    if request.method != "GET":
+        return JsonResponse({"error": "GET method required"}, status=405)
+
+    dealer = get_object_or_404(Dealer, id=dealer_id)
+    reviews = dealer.reviews.all()
+
+    data = [
+        {
+            "id": review.id,
+            "reviewer_name": review.reviewer_name,
+            "comment": review.comment,
+            "rating": review.rating,
+            "created_at": review.created_at.isoformat()
+        }
+        for review in reviews
+    ]
+
+    return JsonResponse({
+        "dealer_id": dealer.id,
+        "dealer_name": dealer.name,
+        "reviews": data
+    })

@@ -1,0 +1,10 @@
+TASK 8: GET DEALER REVIEWS
+
+cURL command:
+curl -i http://127.0.0.1:8000/api/dealers/1/reviews/
+
+Successful output:
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"dealer_id": 1, "dealer_name": "Kigali Motors", "reviews": [{"id": 1, "reviewer_name": "John", "comment": "Excellent customer service.", "rating": 5, "created_at": "2026-11-10T17:14:11.661428+00:00"}, {"id": 2, "reviewer_name": "Sarah", "comment": "Good selection of vehicles.", "rating": 4, "created_at": "2026-11-10T17:14:11.671996+00:00"}]}
