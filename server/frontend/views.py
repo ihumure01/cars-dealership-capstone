@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
-from .models import Dealer
+from .models import Dealer, CarMake
 import json
 
 
@@ -113,3 +113,23 @@ def get_dealers_by_state(request):
     ]
 
     return JsonResponse({"dealers": data})
+
+def get_all_car_makes(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "GET method required"}, status=405)
+
+    makes = CarMake.objects.prefetch_related("models").all()
+
+    data = [
+        {
+            "id": make.id,
+            "name": make.name,
+            "models": [
+                {"id": car_model.id, "name": car_model.name}
+                for car_model in make.models.all()
+            ]
+        }
+        for make in makes
+    ]
+
+    return JsonResponse({"car_makes": data})

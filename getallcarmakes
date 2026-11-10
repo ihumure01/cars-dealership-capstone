@@ -1,0 +1,18 @@
+TASK 14: GET ALL CAR MAKES AND MODELS
+
+cURL command:
+curl -i http://127.0.0.1:8000/api/car-makes/
+
+Successful output:
+HTTP/1.1 200 OK
+Date: Tue, 10 Nov 2026 19:00:30 GMT
+Server: WSGIServer/0.2 CPython/3.14.2
+Content-Type: application/json
+X-Frame-Options: DENY
+Vary: origin
+Content-Length: 305
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+
+{"car_makes": [{"id": 1, "name": "Toyota", "models": [{"id": 1, "name": "Corolla"}, {"id": 2, "name": "Camry"}]}, {"id": 2, "name": "Honda", "models": [{"id": 3, "name": "Civic"}, {"id": 4, "name": "Accord"}]}, {"id": 3, "name": "BMW", "models": [{"id": 5, "name": "X5"}, {"id": 6, "name": "3 Series"}]}]}
