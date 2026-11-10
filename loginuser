@@ -1,0 +1,14 @@
+TASK 5: LOGIN USER
+
+cURL command:
+read -s -p "Enter your root test password: " TEST_PASSWORD
+echo
+curl -i -X POST http://127.0.0.1:8000/login/ \
+-H "Content-Type: application/json" \
+-d "{\"username\":\"root\",\"password\":\"$TEST_PASSWORD\"}"
+unset TEST_PASSWORD
+
+Successful output:
+HTTP/1.1 200 OK
+
+{"message": "Login successful", "username": "root"}
