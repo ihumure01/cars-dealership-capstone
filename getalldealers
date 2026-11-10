@@ -1,0 +1,10 @@
+TASK 9: GET ALL DEALERS
+
+cURL command:
+curl -i http://127.0.0.1:8000/api/dealers/
+
+Successful output:
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"dealers": [{"id": 1, "name": "Kigali Motors"}, {"id": 2, "name": "Rwanda Auto Centre"}]}

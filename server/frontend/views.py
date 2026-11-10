@@ -70,3 +70,20 @@ def get_dealer_reviews(request, dealer_id):
         "dealer_name": dealer.name,
         "reviews": data
     })
+
+
+def get_all_dealers(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "GET method required"}, status=405)
+
+    dealers = Dealer.objects.all()
+
+    data = [
+        {
+            "id": dealer.id,
+            "name": dealer.name
+        }
+        for dealer in dealers
+    ]
+
+    return JsonResponse({"dealers": data})
