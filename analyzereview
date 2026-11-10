@@ -1,0 +1,18 @@
+TASK 16: SENTIMENT ANALYSIS
+
+cURL command:
+curl -i -X POST http://127.0.0.1:8000/api/analyze-review/ -H "Content-Type: application/json" -d '{"review":"Fantastic services"}'
+
+Successful output:
+HTTP/1.1 200 OK
+Date: Tue, 10 Nov 2026 19:19:59 GMT
+Server: WSGIServer/0.2 CPython/3.14.2
+Content-Type: application/json
+X-Frame-Options: DENY
+Vary: origin
+Content-Length: 93
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+
+{"text": "Fantastic services", "polarity": 0.4, "subjectivity": 0.9, "sentiment": "positive"}

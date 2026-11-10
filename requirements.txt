@@ -1,0 +1,13 @@
+asgiref==3.13.0
+click==8.5.1
+cloudpickle==3.1.2
+defusedxml==0.7.1
+Django==6.1.2
+django-cors-headers==4.9.0
+djangorestframework==3.18.3
+joblib==1.6.0
+nltk==3.10.4
+regex==2026.11.9
+sqlparse==0.6.1
+textblob==0.20.1
+tqdm==4.70.1

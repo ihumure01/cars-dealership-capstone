@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from .models import Dealer, CarMake
+from .sentiment_analyzer import sentiment_analyzer
 import json
 
 
@@ -133,3 +134,18 @@ def get_all_car_makes(request):
     ]
 
     return JsonResponse({"car_makes": data})
+
+@csrf_exempt
+def analyze_review(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST method required"}, status=405)
+
+    try:
+        data = json.loads(request.body)
+        review_text = data.get("review", "")
+        if not review_text:
+            return JsonResponse({"error": "Review text is required"}, status=400)
+        result = sentiment_analyzer(review_text)
+        return JsonResponse(result)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
