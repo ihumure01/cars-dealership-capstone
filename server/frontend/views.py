@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -32,3 +32,11 @@ def login_user(request):
 
     except (json.JSONDecodeError, TypeError):
         return JsonResponse({"error": "Invalid JSON data"}, status=400)
+
+@csrf_exempt
+def logout_user(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST method required"}, status=405)
+
+    logout(request)
+    return JsonResponse({"message": "Logout successful"})

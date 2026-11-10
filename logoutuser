@@ -1,0 +1,11 @@
+TASK 6: LOGOUT USER
+
+cURL command:
+curl -i -b cookies.txt -c cookies.txt -X POST http://127.0.0.1:8000/logout/
+
+Successful output:
+HTTP/1.1 200 OK
+
+Set-Cookie: sessionid=""; Max-Age=0
+
+{"message": "Logout successful"}
