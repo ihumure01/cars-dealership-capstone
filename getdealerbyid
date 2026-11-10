@@ -1,0 +1,10 @@
+TASK 10: GET DEALER BY ID
+
+cURL command:
+curl -i http://127.0.0.1:8000/api/dealers/1/
+
+Successful output:
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"id": 1, "name": "Kigali Motors"}

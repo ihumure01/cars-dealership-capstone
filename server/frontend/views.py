@@ -87,3 +87,15 @@ def get_all_dealers(request):
     ]
 
     return JsonResponse({"dealers": data})
+
+
+def get_dealer_by_id(request, dealer_id):
+    if request.method != "GET":
+        return JsonResponse({"error": "GET method required"}, status=405)
+
+    dealer = get_object_or_404(Dealer, id=dealer_id)
+
+    return JsonResponse({
+        "id": dealer.id,
+        "name": dealer.name
+    })
