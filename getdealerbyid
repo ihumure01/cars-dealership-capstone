@@ -1,10 +1,18 @@
-TASK 10: GET DEALER BY ID
+]633;E;echo "TASK 10: GET DEALER BY ID";3b6f18b6-ccb2-4a08-9bf1-af7225e6e79d]633;CTASK 10: GET DEALER BY ID
 
 cURL command:
-curl -i http://127.0.0.1:8000/api/dealers/1/
+curl -i http://127.0.0.1:8000/fetchDealer/1
 
 Successful output:
 HTTP/1.1 200 OK
+Date: Wed, 11 Nov 2026 12:12:54 GMT
+Server: WSGIServer/0.2 CPython/3.14.2
 Content-Type: application/json
+X-Frame-Options: DENY
+Vary: origin
+Content-Length: 237
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
 
-{"id": 1, "name": "Kigali Motors"}
+{"id": 1, "name": "Holdlamis Car Dealership", "city": "El Paso", "state": "Texas", "st": "TX", "address": "3 Nova Court", "zip": "88563", "lat": 31.6948, "long": -106.3, "short_name": "Holdlamis", "full_name": "Holdlamis Car Dealership"}

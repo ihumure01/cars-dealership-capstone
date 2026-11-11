@@ -140,8 +140,18 @@ def get_dealer_by_id(request, dealer_id):
 
     return JsonResponse({
         "id": dealer.id,
-        "name": dealer.name
+        "name": dealer.name,
+        "city": dealer.city,
+        "state": dealer.state,
+        "st": dealer.st,
+        "address": dealer.address,
+        "zip": dealer.zip,
+        "lat": dealer.lat,
+        "long": dealer.long,
+        "short_name": dealer.short_name,
+        "full_name": dealer.full_name,
     })
+
 
 
 def get_dealers_by_state(request):
