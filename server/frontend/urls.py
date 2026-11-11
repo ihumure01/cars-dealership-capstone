@@ -19,4 +19,5 @@ urlpatterns = [
     path("api/dealers/", views.get_all_dealers, name="all-dealers"),
     path("api/dealers/state/kansas/", views.get_dealers_by_state, name="dealers-by-state"),
     path("api/dealers/<int:dealer_id>/", views.get_dealer_by_id, name="dealer-by-id"),
+    path("analyze/<str:review_text>", views.analyze_review_get, name="analyze-review-get"),
 ]

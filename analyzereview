@@ -1,11 +1,11 @@
-TASK 16: SENTIMENT ANALYSIS
+]633;E;echo "TASK 16: SENTIMENT ANALYSIS";3b6f18b6-ccb2-4a08-9bf1-af7225e6e79d]633;CTASK 16: SENTIMENT ANALYSIS
 
 cURL command:
-curl -i -X POST http://127.0.0.1:8000/api/analyze-review/ -H "Content-Type: application/json" -d '{"review":"Fantastic services"}'
+curl -i "http://127.0.0.1:8000/analyze/Fantastic%20services"
 
 Successful output:
 HTTP/1.1 200 OK
-Date: Tue, 10 Nov 2026 19:19:59 GMT
+Date: Wed, 11 Nov 2026 12:53:20 GMT
 Server: WSGIServer/0.2 CPython/3.14.2
 Content-Type: application/json
 X-Frame-Options: DENY

@@ -217,6 +217,14 @@ def get_cars(request):
 
     return JsonResponse({"CarModels": car_models})
 
+
+def analyze_review_get(request, review_text):
+    if request.method != "GET":
+        return JsonResponse({"error": "GET method required"}, status=405)
+
+    result = sentiment_analyzer(review_text)
+    return JsonResponse(result)
+
 @csrf_exempt
 def analyze_review(request):
     if request.method != "POST":
