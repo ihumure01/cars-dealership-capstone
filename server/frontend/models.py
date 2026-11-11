@@ -5,6 +5,14 @@ from django.db import models
 class Dealer(models.Model):
     name = models.CharField(max_length=200)
     state = models.CharField(max_length=100, default="")
+    city = models.CharField(max_length=100, blank=True, default="")
+    st = models.CharField(max_length=10, blank=True, default="")
+    address = models.CharField(max_length=255, blank=True, default="")
+    zip = models.CharField(max_length=20, blank=True, default="")
+    lat = models.FloatField(null=True, blank=True)
+    long = models.FloatField(null=True, blank=True)
+    short_name = models.CharField(max_length=150, blank=True, default="")
+    full_name = models.CharField(max_length=200, blank=True, default="")
 
     def __str__(self):
         return self.name

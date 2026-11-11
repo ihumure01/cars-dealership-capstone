@@ -111,17 +111,25 @@ def get_all_dealers(request):
     if request.method != "GET":
         return JsonResponse({"error": "GET method required"}, status=405)
 
-    dealers = Dealer.objects.all()
-
+    dealers = Dealer.objects.all().order_by("id")
     data = [
         {
             "id": dealer.id,
-            "name": dealer.name
+            "name": dealer.name,
+            "city": dealer.city,
+            "state": dealer.state,
+            "st": dealer.st,
+            "address": dealer.address,
+            "zip": dealer.zip,
+            "lat": dealer.lat,
+            "long": dealer.long,
+            "short_name": dealer.short_name,
+            "full_name": dealer.full_name,
         }
         for dealer in dealers
     ]
-
     return JsonResponse({"dealers": data})
+
 
 
 def get_dealer_by_id(request, dealer_id):
