@@ -85,19 +85,26 @@ def get_dealer_reviews(request, dealer_id):
     data = [
         {
             "id": review.id,
+            "name": review.reviewer_name,
             "reviewer_name": review.reviewer_name,
+            "dealership": dealer.id,
+            "review": review.comment,
             "comment": review.comment,
             "rating": review.rating,
+            "purchase": review.purchase,
+            "purchase_date": (
+                review.purchase_date.isoformat()
+                if review.purchase_date else None
+            ),
+            "car_make": review.car_make,
+            "car_model": review.car_model,
             "created_at": review.created_at.isoformat()
         }
         for review in reviews
     ]
 
-    return JsonResponse({
-        "dealer_id": dealer.id,
-        "dealer_name": dealer.name,
-        "reviews": data
-    })
+    return JsonResponse({"reviews": data})
+
 
 
 def get_all_dealers(request):

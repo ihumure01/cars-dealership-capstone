@@ -19,6 +19,10 @@ class Review(models.Model):
     reviewer_name = models.CharField(max_length=100)
     comment = models.TextField()
     rating = models.PositiveSmallIntegerField()
+    purchase = models.BooleanField(default=False)
+    purchase_date = models.DateField(null=True, blank=True)
+    car_make = models.CharField(max_length=100, blank=True, default="")
+    car_model = models.CharField(max_length=100, blank=True, default="")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

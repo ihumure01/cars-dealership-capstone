@@ -1,10 +1,12 @@
-TASK 8: GET DEALER REVIEWS
-
-cURL command:
-curl -i http://127.0.0.1:8000/api/dealers/1/reviews/
-
-Successful output:
 HTTP/1.1 200 OK
+Date: Wed, 11 Nov 2026 11:38:04 GMT
+Server: WSGIServer/0.2 CPython/3.14.2
 Content-Type: application/json
+X-Frame-Options: DENY
+Vary: origin
+Content-Length: 1195
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
 
-{"dealer_id": 1, "dealer_name": "Kigali Motors", "reviews": [{"id": 1, "reviewer_name": "John", "comment": "Excellent customer service.", "rating": 5, "created_at": "2026-11-10T17:14:11.661428+00:00"}, {"id": 2, "reviewer_name": "Sarah", "comment": "Good selection of vehicles.", "rating": 4, "created_at": "2026-11-10T17:14:11.671996+00:00"}]}
+{"reviews": [{"id": 1, "name": "John", "reviewer_name": "John", "dealership": 1, "review": "Excellent customer service.", "comment": "Excellent customer service.", "rating": 5, "purchase": false, "purchase_date": null, "car_make": "", "car_model": "", "created_at": "2026-11-10T17:14:11.661428+00:00"}, {"id": 2, "name": "Sarah", "reviewer_name": "Sarah", "dealership": 1, "review": "Good selection of vehicles.", "comment": "Good selection of vehicles.", "rating": 4, "purchase": false, "purchase_date": null, "car_make": "", "car_model": "", "created_at": "2026-11-10T17:14:11.671996+00:00"}, {"id": 4, "name": "Alex", "reviewer_name": "Alex", "dealership": 1, "review": "Great service and helpful staff.", "comment": "Great service and helpful staff.", "rating": 5, "purchase": false, "purchase_date": null, "car_make": "", "car_model": "", "created_at": "2026-11-10T19:50:12.888533+00:00"}, {"id": 5, "name": "Alex", "reviewer_name": "Alex", "dealership": 1, "review": "Great service and helpful staff.", "comment": "Great service and helpful staff.", "rating": 5, "purchase": false, "purchase_date": null, "car_make": "", "car_model": "", "created_at": "2026-11-10T20:11:02.194705+00:00"}]}
