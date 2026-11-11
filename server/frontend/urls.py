@@ -12,6 +12,7 @@ urlpatterns = [
     path("djangoapp/logout", views.djangoapp_logout, name="djangoapp-logout"),
     path("api/dealers/<int:dealer_id>/reviews/", views.get_dealer_reviews, name="dealer-reviews"),
     path("fetchReviews/dealer/<int:dealer_id>", views.get_dealer_reviews, name="fetch-dealer-reviews"),
+    path("fetchDealers/Kansas", views.get_dealers_by_state, name="fetch-dealers-by-state"),
     path("fetchDealers", views.get_all_dealers, name="fetch-dealers"),
     path("fetchDealer/<int:dealer_id>", views.get_dealer_by_id, name="fetch-dealer-by-id"),
     path("api/dealers/", views.get_all_dealers, name="all-dealers"),

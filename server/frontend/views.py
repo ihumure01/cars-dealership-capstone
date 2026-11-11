@@ -158,14 +158,28 @@ def get_dealers_by_state(request):
     if request.method != "GET":
         return JsonResponse({"error": "GET method required"}, status=405)
 
-    dealers = Dealer.objects.filter(state__iexact="Kansas")
+    dealers = Dealer.objects.filter(state__iexact="Kansas").order_by("id")
 
     data = [
-        {"id": dealer.id, "name": dealer.name, "state": dealer.state}
+        {
+            "id": dealer.id,
+            "name": dealer.name,
+            "city": dealer.city,
+            "state": dealer.state,
+            "st": dealer.st,
+            "address": dealer.address,
+            "zip": dealer.zip,
+            "lat": dealer.lat,
+            "long": dealer.long,
+            "short_name": dealer.short_name,
+            "full_name": dealer.full_name,
+        }
         for dealer in dealers
     ]
 
     return JsonResponse({"dealers": data})
+
+
 
 def get_all_car_makes(request):
     if request.method != "GET":

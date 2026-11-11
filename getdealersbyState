@@ -1,18 +1,18 @@
-TASK 11: GET DEALERS BY STATE
+]633;E;echo "TASK 11: GET DEALERS BY STATE";3b6f18b6-ccb2-4a08-9bf1-af7225e6e79d]633;CTASK 11: GET DEALERS BY STATE
 
 cURL command:
-curl -i http://127.0.0.1:8000/api/dealers/state/kansas/
+curl -i http://127.0.0.1:8000/fetchDealers/Kansas
 
 Successful output:
 HTTP/1.1 200 OK
-Date: Tue, 10 Nov 2026 18:19:34 GMT
+Date: Wed, 11 Nov 2026 12:25:57 GMT
 Server: WSGIServer/0.2 CPython/3.14.2
 Content-Type: application/json
 X-Frame-Options: DENY
 Vary: origin
-Content-Length: 73
+Content-Length: 254
 X-Content-Type-Options: nosniff
 Referrer-Policy: same-origin
 Cross-Origin-Opener-Policy: same-origin
 
-{"dealers": [{"id": 3, "name": "Kansas City Motors", "state": "Kansas"}]}
+{"dealers": [{"id": 8, "name": "Bytecard Car Dealership", "city": "Topeka", "state": "Kansas", "st": "KS", "address": "288 Larry Place", "zip": "66642", "lat": 39.0429, "long": -95.7697, "short_name": "Bytecard", "full_name": "Bytecard Car Dealership"}]}
