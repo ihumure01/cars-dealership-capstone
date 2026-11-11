@@ -201,6 +201,22 @@ def get_all_car_makes(request):
 
     return JsonResponse({"car_makes": data})
 
+
+def get_cars(request):
+    if request.method != "GET":
+        return JsonResponse({"error": "GET method required"}, status=405)
+
+    car_models = [
+        {
+            "CarMake": make.name,
+            "CarModel": car_model.name
+        }
+        for make in CarMake.objects.prefetch_related("models").all()
+        for car_model in make.models.all()
+    ]
+
+    return JsonResponse({"CarModels": car_models})
+
 @csrf_exempt
 def analyze_review(request):
     if request.method != "POST":

@@ -5,6 +5,7 @@ urlpatterns = [
     path("post-review/", views.post_review, name="post-review"),
     path("api/analyze-review/", views.analyze_review, name="analyze-review"),
     path("api/car-makes/", views.get_all_car_makes, name="all-car-makes"),
+    path("djangoapp/get_cars", views.get_cars, name="get-cars"),
     path("", views.home, name="home"),
     path("djangoapp/login", views.djangoapp_login, name="djangoapp-login"),
     path("login/", views.login_user, name="login"),
